@@ -1,6 +1,8 @@
 == Build ==
 
-{{{gcc -o xmeasure xmeasure.c -L/usr/X11R6/lib -lX11}}}
+{{{
+gcc -o xmeasure xmeasure.c -L/usr/X11R6/lib -lX11
+}}}
 
 == Usage ==
 
