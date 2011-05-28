@@ -16,17 +16,15 @@ gcc -o xmeasure xmeasure.c -L/usr/X11R6/lib -lX11
 #!/bin/bash
 Y="yad --mouse --window-icon /home/tri/icons/ruler.png --title Measure"
 function measure {
-	i=(`xmeasure`)
-	(
+  i=(`xmeasure`)
+  (
     echo ${i[0]} ${i[1]}
     echo ${i[2]} ${i[3]}
     echo ${i[4]} ${i[5]} pixel
     echo ${i[6]} ${i[7]} pixel
-	)|$Y --button gtk-ok:0 --width 150 --height 150 --text-info
-	$Y --button Measure:0 --button gtk-cancel:1
-	if [ $? -eq 0 ]; then
-		measure
-	fi
-	}
+  )|$Y --button gtk-ok:0 --width 150 --height 150 --text-info
+  $Y --button Measure:0 --button gtk-cancel:1
+  [ $? -eq 0 ] && measure
+}
 measure
 }}}
