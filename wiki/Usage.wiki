@@ -12,6 +12,7 @@ gcc -o xmeasure xmeasure.c -L/usr/X11R6/lib -lX11
   * Release the mouse button.  Coordinates, width, and height should be printed on terminal output.
 
 == Bash script to display information in [http://code.google.com/p/yad yad] ==
+<a href="https://picasaweb.google.com/lh/photo/rCBPwpypUD7QbRA9crLZsQ?feat=embedwebsite"><img src="https://lh5.googleusercontent.com/-mTspqI9VX5c/ToUDUxLIVII/AAAAAAAAASQ/hcugkRNyWhM/s144/xmeasure_yad.png" height="144" width="128" /></a>
 {{{
 #!/bin/bash
 Y="yad --mouse --window-icon /home/tri/icons/ruler.png --title Measure"
