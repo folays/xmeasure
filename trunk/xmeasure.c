@@ -1,5 +1,4 @@
 /* build command: "gcc -o xmeasure xmeasure.c -L/usr/X11R6/lib -lX11" */
-/* this code was given to me by ananasik (author of yad and gshot) http://code.google.com/p/yad/issues/detail?id=3 */
 /*
    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
