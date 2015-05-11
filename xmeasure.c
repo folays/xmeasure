@@ -116,14 +116,36 @@ main ()
   XRectangle xrect;
 
   dpy = XOpenDisplay (NULL);
+
+  int scr = DefaultScreen(dpy);
+  int dpi_x = (double)DisplayWidth(dpy, scr) * (double)25.4 / (double)DisplayWidthMM(dpy, scr) + 0.5;
+  int dpi_y = (double)DisplayHeight(dpy, scr) * (double)25.4 / (double)DisplayHeightMM(dpy, scr) + 0.5;
+
+  printf ("DPI %d %d\n", dpi_x, dpi_y);
+
   root = DefaultRootWindow (dpy);
 
-  grab_rectangle (dpy, root, &xrect);
+  float total_mm_x = 0, total_mm_y = 0;
+  while (1)
+    {
+      grab_rectangle (dpy, root, &xrect);
+
+      printf ("---\n");
+      printf ("X: %d Y: %d Width: %d Height: %d\n", xrect.x, xrect.y, xrect.width, xrect.height);
+
+      float mm_x = (double)xrect.width * (double)DisplayWidthMM(dpy, scr) / (double)DisplayWidth(dpy, scr);
+      float mm_y = (double)xrect.height * (double)DisplayHeightMM(dpy, scr) / (double)DisplayHeight(dpy, scr);
+
+      printf ("cm : \e[32m%.2f\e[0m \e[32m%.2f\e[0m square cm : \e[33m%.2f\e[0m\n", mm_x / 10, mm_y / 10, mm_x * mm_y / 100);
+
+      total_mm_x += mm_x;
+      total_mm_y += mm_y;
+      printf ("total cm : \e[32m%.2f\e[0m \e[32m%.2f\e[0m square cm : \e[33m%.2f\e[0m\n", total_mm_x / 10, total_mm_y / 10, total_mm_x * total_mm_y / 100);
+
+      fflush(stdout);
+    }
 
   XCloseDisplay (dpy);
-
-  printf ("X: %d\nY: %d\nWidth: %d\nHeight: %d\n",
-	  xrect.x, xrect.y, xrect.width, xrect.height);
 
   return 0;
 }
