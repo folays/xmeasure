@@ -125,7 +125,7 @@ main ()
 
   root = DefaultRootWindow (dpy);
 
-  float total_mm_x = 0, total_mm_y = 0;
+  float total_square_mm = 0;
   while (1)
     {
       grab_rectangle (dpy, root, &xrect);
@@ -138,9 +138,8 @@ main ()
 
       printf ("cm : \e[32m%.2f\e[0m \e[32m%.2f\e[0m square cm : \e[33m%.2f\e[0m\n", mm_x / 10, mm_y / 10, mm_x * mm_y / 100);
 
-      total_mm_x += mm_x;
-      total_mm_y += mm_y;
-      printf ("total cm : \e[32m%.2f\e[0m \e[32m%.2f\e[0m square cm : \e[33m%.2f\e[0m\n", total_mm_x / 10, total_mm_y / 10, total_mm_x * total_mm_y / 100);
+      total_square_mm += mm_x * mm_y;
+      printf ("total square cm : \e[35m%.2f\e[0m\n", total_square_mm / 100);
 
       fflush(stdout);
     }
